@@ -7,6 +7,35 @@ menuToggle.addEventListener("click", () => {
 
 let editandoItem = null;
 
+/* ===============================
+   CONFIGURAÇÃO DO AUTO RESET
+================================ */
+const LIMITE_HORAS = 12;
+const LIMITE_MS = LIMITE_HORAS * 60 * 60 * 1000;
+
+/* Verifica se já passou 12h desde o último uso */
+function verificarExpiracaoCompras() {
+  const ultimo = localStorage.getItem("ultimoRegistroCompras");
+  if (!ultimo) return;
+
+  const agora = Date.now();
+  const diff = agora - Number(ultimo);
+
+  if (diff >= LIMITE_MS) {
+    localStorage.removeItem("listaCompras");
+    localStorage.removeItem("ultimoRegistroCompras");
+  }
+}
+
+/* Atualiza o horário sempre que algo muda */
+function atualizarHorarioCompras() {
+  localStorage.setItem("ultimoRegistroCompras", Date.now());
+}
+
+/* ===============================
+   FUNÇÕES DA LISTA DE COMPRAS
+================================ */
+
 function adicionarItem() {
   let nome = document.getElementById("itemNome").value;
   let quantidade = parseInt(document.getElementById("itemQuantidade").value);
@@ -24,9 +53,12 @@ function adicionarItem() {
   }
 
   localStorage.setItem("listaCompras", JSON.stringify(lista));
+  atualizarHorarioCompras();
+
   document.getElementById("itemNome").value = "";
   document.getElementById("itemQuantidade").value = "";
   document.getElementById("itemPreco").value = "";
+
   mostrarListaCompras();
 }
 
@@ -42,7 +74,8 @@ function mostrarListaCompras() {
     ul.innerHTML += `
       <li>
         <input type="checkbox" ${item.comprado ? "checked" : ""} onclick="marcarComprado(${i})">
-        ${item.nome} - ${item.quantidade} x R$ ${item.preco.toFixed(2)} = R$ ${(item.quantidade * item.preco).toFixed(2)}
+        ${item.nome} - ${item.quantidade} x R$ ${item.preco.toFixed(2)} = 
+        R$ ${(item.quantidade * item.preco).toFixed(2)}
         <div class="botoes-item">
           <button onclick="editarItem(${i})">✏️</button>
           <button onclick="removerItem(${i})">❌</button>
@@ -58,6 +91,7 @@ function marcarComprado(i) {
   let lista = JSON.parse(localStorage.getItem("listaCompras")) || [];
   lista[i].comprado = !lista[i].comprado;
   localStorage.setItem("listaCompras", JSON.stringify(lista));
+  atualizarHorarioCompras();
   mostrarListaCompras();
 }
 
@@ -67,6 +101,7 @@ function editarItem(i) {
   document.getElementById("itemQuantidade").value = lista[i].quantidade;
   document.getElementById("itemPreco").value = lista[i].preco;
   editandoItem = i;
+  atualizarHorarioCompras();
 }
 
 function removerItem(i) {
@@ -75,8 +110,14 @@ function removerItem(i) {
   let lista = JSON.parse(localStorage.getItem("listaCompras")) || [];
   lista.splice(i, 1);
   localStorage.setItem("listaCompras", JSON.stringify(lista));
+  atualizarHorarioCompras();
   mostrarListaCompras();
 }
 
-
-window.onload = mostrarListaCompras;
+/* ===============================
+   AO ABRIR A PÁGINA
+================================ */
+window.onload = () => {
+  verificarExpiracaoCompras();
+  mostrarListaCompras();
+};
