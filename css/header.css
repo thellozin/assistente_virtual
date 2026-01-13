@@ -8,7 +8,10 @@ header {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  
+
+  /* 🔧 Correção para mobile */
+  position: relative;
+  z-index: 1000;
 }
 
 header h1 {
@@ -20,6 +23,9 @@ header h1 {
 header nav {
   display: flex;
   gap: 10px;
+
+  /* 🔧 Correção para mobile */
+  z-index: 1001;
 }
 
 header nav a {
@@ -43,6 +49,10 @@ header nav a:hover {
   width: 25px;
   height: 20px;
   cursor: pointer;
+
+  /* 🔧 Correção para mobile */
+  position: relative;
+  z-index: 1002;
 }
 
 #menu-toggle span {
@@ -59,6 +69,13 @@ header nav a:hover {
     flex-direction: column;
     width: 100%;
     margin-top: 10px;
+
+    /* 🔧 Correção para mobile */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #007bff;
+    z-index: 1001;
   }
 
   header nav.active {
