@@ -1,0 +1,47 @@
+.topo {
+  background: #007bff;
+  color: white;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.botao-menu {
+  font-size: 26px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.menu {
+  display: none;
+  flex-direction: column;
+  background: #007bff;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.menu a:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.menu.ativo {
+  display: flex;
+}
+
+@media (min-width: 769px) {
+  .menu {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .botao-menu {
+    display: none;
+  }
+}

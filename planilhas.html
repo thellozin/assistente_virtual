@@ -6,27 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Planilhas de Treino</title>
   <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/header-treino.css">
+
 </head>
 
 <body>
 
 <header class="topo">
-
-
-  <div id="menu-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-
-  <nav id="menu">
-    <a href="index.html">Home</a>
-    <a href="planilhas.html">Planilha de Treino</a>
-    <a href="treinos.html">Treinos</a>
-    <a href="historico.html">Historico de Treino</a>
-  </nav>
+  <div>📋 Painel</div>
+  <div class="botao-menu" onclick="abrirMenu()">☰</div>
 </header>
+
+<nav id="menuTreino" class="menu">
+  <a href="index.html">Home</a>
+  <a href="planilhas.html">Planilhas</a>
+  <a href="treinos.html">Treinos</a>
+  <a href="historico.html">Histórico</a>
+  <a href="idiomas.html">Idiomas</a>
+  
+</nav>
+
 
 <h1>📋 Planilhas de Treino</h1>
 
@@ -38,7 +37,8 @@
 <div id="planilhas"></div>
 
 <script src="/js/planilhas.js"></script>
-<script src="/js/menu.js"></script>
+<script src="js/header-treino.js"></script>
+
 
 </body>
 </html>
