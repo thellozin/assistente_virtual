@@ -1,10 +1,3 @@
-const menuToggle = document.getElementById("menu-toggle");
-const nav = document.querySelector("header nav");
-
-menuToggle.addEventListener("click", () => {
-  nav.classList.toggle("active");
-});
-
 let palavras = JSON.parse(localStorage.getItem("palavras")) || [];
 
 function salvar() {
