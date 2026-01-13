@@ -5,7 +5,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative; /* ESSENCIAL */
+  z-index: 10000;
 }
+
 
 .botao-menu {
   font-size: 26px;
@@ -17,7 +20,13 @@
   display: none;
   flex-direction: column;
   background: #007bff;
+  width: 100%;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  z-index: 9999;
 }
+
 
 .menu a {
   color: white;
