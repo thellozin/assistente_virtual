@@ -12,20 +12,19 @@
 
 <body>
 
-<header class="topo">
+<div id="topo" style="background:#007bff;color:white;padding:12px;display:flex;justify-content:space-between;align-items:center;">
   <div>📋 Painel</div>
- <div class="botao-menu">☰</div>
+  <div id="btnMenu" style="font-size:26px;cursor:pointer;">☰</div>
+</div>
 
-</header>
+<div id="menuMobile" style="display:none;background:#007bff;">
+  <a href="planilhas.html" style="display:block;padding:12px;color:white;text-decoration:none;">Planilhas</a>
+  <a href="treinos.html" style="display:block;padding:12px;color:white;text-decoration:none;">Treinos</a>
+  <a href="historico.html" style="display:block;padding:12px;color:white;text-decoration:none;">Histórico</a>
+  <a href="idiomas.html" style="display:block;padding:12px;color:white;text-decoration:none;">Idiomas</a>
+  <a href="index.html" style="display:block;padding:12px;color:white;text-decoration:none;">Home</a>
+</div>
 
-<nav id="menuTreino" class="menu">
-  <a href="index.html">Home</a>
-  <a href="planilhas.html">Planilhas</a>
-  <a href="treinos.html">Treinos</a>
-  <a href="historico.html">Histórico</a>
-  <a href="idiomas.html">Idiomas</a>
-  
-</nav>
 
 
 <h1>🏋️ Registrar Treino</h1>
@@ -44,7 +43,18 @@
 <button onclick="salvarTreino()">Salvar Treino</button>
 
 <script src="/js/treinos.js"></script>
-<script src="js/header-treino.js"></script>
+<!-- <script src="js/header-treino.js"></script> -->
+ <script>
+document.getElementById("btnMenu").onclick = function () {
+  const menu = document.getElementById("menuMobile");
+  if (menu.style.display === "block") {
+    menu.style.display = "none";
+  } else {
+    menu.style.display = "block";
+  }
+};
+</script>
+
 
 
 </body>
